@@ -1,0 +1,26 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 14px;
+  gap: 12px;
+}
+
+.listItem {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.listPrg {
+  font-size: 18px;
+}
+
+.listBtn {
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+  background-color: #c46f6f;
+  color: #fff;
+  cursor: pointer;
+}
