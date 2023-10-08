@@ -5,7 +5,7 @@ export const Filter = ({ onFilterChange, filter }) => {
       className={formFiter.formInput}
       type="text"
       name="filter"
-      onChange={e => onFilterChange(e.target.value)}
+      onChange={onFilterChange}
       value={filter}
     />
   );
