@@ -1,7 +1,6 @@
 import list from './ContactList.module.css';
 
 export const ContactList = ({ contacts, deleteContact }) => {
-  console.log(contacts);
   return (
     <ul className={list.list}>
       {contacts.map(({ id, name, number }) => (

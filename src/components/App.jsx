@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
 import app from './App.module.css';
 import { nanoid } from 'nanoid';
 import { ContactForm } from './ContactForm/ContactForm';
@@ -27,8 +27,8 @@ export const App = () => {
   };
 
   const deleteContact = conId => {
-    setContacts(prev => {
-      prev.filter(con => con.id !== conId);
+    setContacts(contacts => {
+      contacts.filter(contact => contact.id !== conId);
     });
   };
 
@@ -36,12 +36,11 @@ export const App = () => {
     setFilter(e.target.value);
   };
 
-  const contactFilter = useMemo(() => {
+  const getFilteredContacts = () => {
     return contacts.filter(contact => {
-      console.log(contact);
       return contact.name.toLowerCase().includes(filter.toLowerCase());
     });
-  }, [contacts, filter]);
+  };
 
   useEffect(() => {
     const contacts = localStorage.getItem('userContacts');
@@ -57,14 +56,6 @@ export const App = () => {
     }
   }, [contacts]);
 
-  // componentDidMount() {
-  //
-  // }
-
-  // componentDidUpdate(_, prevState) {
-  //
-  // }
-
   return (
     <div className={app.block}>
       <h1 className={app.firstTitle}>Phonebook</h1>
@@ -72,7 +63,10 @@ export const App = () => {
 
       <h2 className={app.secondTitle}>Contacts</h2>
       <Filter filter={filter} onFilterChange={onFilter} />
-      <ContactList contacts={contactFilter} deleteContact={deleteContact} />
+      <ContactList
+        contacts={getFilteredContacts()}
+        deleteContact={deleteContact}
+      />
     </div>
   );
 };
